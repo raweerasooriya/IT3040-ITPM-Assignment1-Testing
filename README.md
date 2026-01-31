@@ -1,13 +1,14 @@
 # SwiftTranslator Test Automation Suite
 
-This project contains automated tests for the SwiftTranslator Singlish to Sinhala conversion system using Playwright.
+This project contains automated tests for the SwiftTranslator Singlish to Sinhala conversion system using Playwright. It is developed for the IT3040 - ITPM Assignment 1.
 
 ## Project Overview
 
-This test suite validates the functionality of the SwiftTranslator web application by testing:
-- 24 positive functional scenarios
-- 10 negative functional scenarios  
-- 1 UI-related test scenario
+This test suite validates the accuracy, robustness, and usability of the SwiftTranslator web application by executing a total of **43 test scenarios**:
+
+- **28 Positive Functional Scenarios**: Verifying correct transliteration across various sentence structures.
+- **13 Negative Functional Scenarios**: Testing system behavior under invalid formatting and edge cases.
+- **2 UI-Related Scenarios**: Validating interface behavior (1 Positive & 1 Negative).
 
 ## Prerequisites
 
@@ -24,164 +25,144 @@ If you have the project as a zip file, extract it. If it's a Git repository:
 ```bash
 git clone <repository-url>
 cd <project-directory>
-```
-
-### Step 2: Install Dependencies
-
+Step 2: Install Dependencies
 Run the following command in the project root directory:
 
-```bash
+Bash
 npm install
-```
-
-### Step 3: Install Playwright Browsers
-
+Step 3: Install Playwright Browsers
 After installing dependencies, install the required browsers:
 
-```bash
+Bash
 npx playwright install chromium
-```
-
-## Project Structure
-
-```
+Project Structure
 .
-├── swift-translator-tests.spec.js    # Main test file
+├── swift-translator-tests.spec.js    # Main test file containing all 43 scenarios
 ├── playwright.config.js              # Playwright configuration
 ├── package.json                      # Project dependencies
 └── README.md                         # This file
-```
-
-## Running the Tests
-
-### Run All Tests
-
-```bash
+Running the Tests
+Run All Tests
+Bash
 npm test
-```
-
-### Run Tests in Headed Mode (visible browser)
-
-```bash
+Run Tests in Headed Mode (visible browser)
+Bash
 npm run test:headed
-```
-
-### Run Tests with UI Mode (interactive)
-
-```bash
+Run Tests with UI Mode (interactive)
+Bash
 npm run test:ui
-```
-
-### Run Tests in Debug Mode
-
-```bash
+Run Tests in Debug Mode
+Bash
 npm run test:debug
-```
-
-### View Test Report
-
+View Test Report
 After running tests, view the HTML report:
 
-```bash
+Bash
 npm run report
-```
+Test Coverage
+Positive Functional Tests (28 scenarios)
+The test suite covers a wide range of linguistic patterns including:
 
-## Test Coverage
+Sentence Structures: Simple, compound, and complex sentences
 
-### Positive Functional Tests (24 scenarios)
+Question Forms: Various interrogative patterns
 
-The test suite covers:
-- **Sentence Structures**: Simple, compound, and complex sentences
-- **Question Forms**: Various interrogative patterns
-- **Command Forms**: Direct and polite imperatives
-- **Tense Variations**: Past, present, and future tenses
-- **Negations**: Different negative sentence forms
-- **Greetings & Responses**: Common conversational patterns
-- **Mixed Language**: English terms embedded in Singlish
-- **Punctuation**: Special characters and formatting
-- **Numbers & Currency**: Numerical formats and currency
+Command Forms: Direct and polite imperatives
 
-### Negative Functional Tests (10 scenarios)
+Tense Variations: Past, present, and future tenses
 
-Tests for robustness including:
-- Missing spaces between words
-- Multiple consecutive spaces
-- Line breaks in input
-- Informal slang expressions
-- Mixed language with formatting errors
-- Abbreviations and technical terms
-- Typographical errors
+Negations: Different negative sentence forms
 
-### UI Test (1 scenario)
+Greetings & Responses: Common conversational patterns
 
-- Real-time output update validation
-- Tests that translation appears dynamically as user types
+Mixed Language: English terms embedded in Singlish
 
-## Test Data Structure
+Punctuation: Special characters and formatting
 
-Each test case includes:
-- **Test Case ID**: Unique identifier (e.g., Pos_Fun_001)
-- **Name**: Descriptive test name
-- **Input**: Singlish text to translate
-- **Expected Output**: Expected Sinhala translation
-- **Category**: Test category (e.g., Daily language usage)
-- **Grammar**: Grammar focus (e.g., Simple sentence)
-- **Length**: Input length type (S/M/L)
+Numbers & Currency: Numerical formats and currency
 
-## Configuration
+Long Paragraphs: Validating stability with inputs >300 characters
 
-Test timeouts and settings can be modified in `playwright.config.js`:
-- Default timeout: 60 seconds
-- Expect timeout: 10 seconds
-- Retries: 0 (can be increased for flaky tests)
-- Workers: 1 (sequential execution)
+Negative Functional Tests (13 scenarios)
+Tests for system robustness and error handling including:
 
-## Troubleshooting
+Spacing Issues: Missing spaces (concatenated words) and multiple consecutive spaces
 
-### Tests Failing
+Formatting: Line breaks and paragraph-style inputs
 
-1. **Network Issues**: Ensure stable internet connection
-2. **Site Changes**: Website structure may have changed - verify selectors
-3. **Timeout Errors**: Increase timeout values in config or test files
+Invalid Inputs: Mixed alphanumeric strings without spaces
 
-### Installation Issues
+Language handling: Complex mixed-language scenarios (English/Singlish hybrids)
 
-1. **Node.js Version**: Ensure you're using Node.js 16+
-   ```bash
-   node --version
-   ```
+Edge Cases: Extremely short or long invalid strings
 
-2. **Clear Cache**: If having npm issues
-   ```bash
-   npm cache clean --force
-   npm install
-   ```
+UI Tests (2 scenarios)
+Positive UI Scenario: Validates that the Sinhala output updates in real-time as the user types (Usability flow).
 
-### Browser Issues
+Negative UI Scenario: Validates system behavior when clearing inputs or handling rapid UI interactions.
 
+Test Data Structure
+Each test case in the script includes:
+
+Test Case ID: Unique identifier (e.g., Pos_Fun_001, Neg_Fun_001, Pos_UI_001)
+
+Name: Descriptive test name
+
+Input: Singlish text to translate
+
+Expected Output: Expected Sinhala translation
+
+Category: Test category (e.g., Daily language usage)
+
+Grammar: Grammar focus (e.g., Simple sentence)
+
+Length: Input length type (S/M/L)
+
+Configuration
+Test timeouts and settings can be modified in playwright.config.js:
+
+Default timeout: 60 seconds
+
+Expect timeout: 10 seconds
+
+Retries: 0 (can be increased for flaky tests)
+
+Workers: 1 (sequential execution to ensure stability)
+
+Troubleshooting
+Tests Failing
+Network Issues: Ensure stable internet connection as the tool is web-based.
+
+Site Changes: If the SwiftTranslator DOM structure changes, selectors may need updating.
+
+Timeout Errors: Increase timeout values in config if the network is slow.
+
+Installation Issues
+Node.js Version: Ensure you're using Node.js 16+
+
+Bash
+node --version
+Clear Cache: If having npm issues
+
+Bash
+npm cache clean --force
+npm install
+Browser Issues
 If Playwright browsers aren't working:
-```bash
+
+Bash
 npx playwright install --force chromium
-```
+Test Results
+Test results are saved in the test-results/ directory:
 
-## Test Results
+HTML report: test-results/html-report/
 
-Test results are saved in the `test-results/` directory:
-- HTML report: `test-results/html-report/`
-- JSON results: `test-results/test-results.json`
-- Screenshots/Videos: `test-results/artifacts/`
+JSON results: test-results/test-results.json
 
-## Notes
+Screenshots/Videos: test-results/artifacts/ (Captured on failure)
 
-- Tests run sequentially (workers: 1) to avoid conflicts
-- Each test waits 2 seconds between executions for stability
-- Screenshots and videos are captured only on failure
-- All tests use the same base URL configured in `playwright.config.js`
-
-## License
-
+License
 This project is for educational purposes as part of IT3040 - ITPM assignment.
 
-## Author
-
-BSc (Hons) in Information Technology - Year 3 Student
+Author
+Student Name: WEERASOORIYA R A Registration Number: IT23168190 BSc (Hons) in Information Technology - Year 3 semester 1
